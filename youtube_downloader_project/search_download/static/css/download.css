@@ -1,0 +1,201 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Reggae One', cursive;
+}
+
+header{
+  position: relative;
+  padding:10px;
+  min-height: 75px;
+  border: 1px solid transparent;
+  border-radius: 0px;
+  background: black;
+  opacity: 0.5;
+}
+
+.container1{
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;s
+}
+
+.left-sight{
+  width: 60%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.icon{
+  font-size: 3em;
+}
+
+.logo3{
+  position: relative;
+  color: #ED1E24;
+}
+
+.menu{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu > ul{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.menu >ul >li{
+  list-style: none;
+  margin-left: 30px;
+  font-size: 20px;
+}
+
+.menu > ul > li > a{
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+
+.menu>ul>li>a:hover{
+  border-bottom: 3px solid #ED1E24;
+  color: #ED1E24;
+}
+
+body{
+	background: #ff0;
+	height: 100vh;
+	color: white;
+	background: url(../img/download.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 75%;
+}
+
+a{
+	text-decoration: none;
+	cursor: pointer;
+	color: white;
+}
+
+.text{
+    margin-top: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.container{
+    margin-top: 75px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.logo{
+	position: relative;
+	color: white;
+	font-size: 5em;
+	text-shadow: 0 0 50px #0f0,
+				 0 0 100px #0f0,
+				 0 0 150px #0f0,
+				 0 0 200px #0f0,
+				 0 0 250px #0f0;
+	animation: animate 5s linear infinite;
+}
+
+@keyframes animate{
+	0%{
+		filter: hue-rotate(0deg);
+	}
+	100%{
+		filter: hue-rotate(360deg);
+	}
+}
+
+.video_back{
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.video{
+	width: 300px;
+	height: 300px;
+}
+
+.about_video_back{
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.about_video{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.case{
+	width: 200px;
+	height: 65px;
+	font-size: 25px;
+	display: flex;
+	text-align: center;
+	justify-content: space-between;
+	align-items: baseline;
+}
+
+.case>p{
+	color: #fff;
+}
+
+.addition{
+    margin-left: 40px;
+    font-size: 25px;
+}
+
+.addition>p{
+    padding-bottom: 30px;
+}
+
+.logo2{
+	position: relative;
+	color: white;
+	font-size: 1em;
+}
+
+.download{
+    width: 100%;
+    padding-left: 150px;
+    padding-right: 150px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.download > form > button{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: inherit;
+    border: none;
+    font-size: 35px;
+    cursor: pointer;
+    outline: none;
+}
+
