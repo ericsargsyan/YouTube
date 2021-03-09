@@ -1,8 +1,16 @@
 # YouTube Project
 
-Downlaod any video you want from youtube in both mp3 and mp4 formats<br>
+Downlaod any video from Youtube<br>
+<h2>Features</h2>
+
+<ul>
+  <li>Easy coordiantion</li>
+  <li>Downlaod in both MP3 and MP$ formats</li>
+  <li>Special design for all pages</li>
+</ul>
+
 Don't forget to activate your enviroment via scripts\activate.bat
 
 Project was created in +-12 days<br> 
-<p style="color: black">Enjoy!</p>
+<p style="color: green;">Enjoy!</p>
 
