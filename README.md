@@ -5,7 +5,7 @@ Downlaod any video from Youtube<br>
 
 <ul>
   <li>Easy coordiantion</li>
-  <li>Downlaod in both MP3 and MP$ formats</li>
+  <li>Downlaod in both MP3 and MP4 formats</li>
   <li>Special design for all pages</li>
 </ul>
 
