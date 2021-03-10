@@ -14,4 +14,5 @@ Don't forget to activate your enviroment via scripts\activate.bat
 Project was created in +-12 days<br> 
 <h3>Enjoy!</h3>
 
-![youitube](https://user-images.githubusercontent.com/72858955/youtube.png)
+![youitube](https://user-images.githubusercontent.com/72858955/110603223-380c1b00-81a0-11eb-8781-3f39c376f3c4.png)
+
