@@ -65,7 +65,7 @@
   		</div>
 	</header>
     <div class="container">
-        {% for url in urls %}
+        {% for url in page_obj %}
         <iframe class="iframe-class" src="{{ url }}"></iframe>
         {% endfor %}
     </div>
@@ -75,5 +75,20 @@
 			<button type="submit">Clear History</button>
 		</div>
 	</form>
+	<div class="pages">
+			{% if page_obj.has_previous %}
+				<a href="?page={{ page_obj.previous_page_number }}">
+					<i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+				</a>
+			{% endif %}
+			<p>
+			Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+			</p>
+			{% if page_obj.has_next %}
+				<a href="?page={{ page_obj.next_page_number }}">
+					<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+				</a>
+			{% endif %}
+	</div>
 </body>
 </html>

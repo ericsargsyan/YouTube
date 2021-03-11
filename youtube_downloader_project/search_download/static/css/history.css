@@ -133,3 +133,22 @@ form{
     opacity: 1;
 }
 
+.pages{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.pages > p{
+    color: #E7C09A;
+    font-size: 25px;
+}
+
+.pages > a{
+    text-decoration: none;
+    color: #C8ADA6;
+    font-size: 25px;
+    margin: 0 15px 0 15px;
+}
+

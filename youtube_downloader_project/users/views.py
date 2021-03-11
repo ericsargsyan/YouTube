@@ -26,6 +26,7 @@ def register(request):
 
 	return render(request, "users/register.html", {"form": form})
 
+
 @login_required
 def profile_page(request):
 	# profile = Profile.objects.get(id=request.user.id)
@@ -68,15 +69,17 @@ def profile_update(request):
 			form.save()
 
 			if request.FILES.get('image', None) != None:
-				print(request.FILES)
+				# print(request.FILES)
 				user_profile.image = request.FILES['image']
 				user_profile.save()
-				messages.success(request, 'Profile was updated successfully!')
+				# messages.success(request, 'Profile was updated successfully!')
 			return redirect('profile_page')
 
-	messages.warning(request, 'Profile was not updated successfully!')
+	# messages.warning(request, 'Profile was not updated successfully!')
 	return render(request, "users/profile_update.html", {'form': form})
+
 
 @login_required
 def logout(request):
 	return render(request, 'users/logout.html')
+

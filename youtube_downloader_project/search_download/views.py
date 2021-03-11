@@ -83,7 +83,7 @@ def search_results(request):
 			results = YoutubeSearch(title, max_results=1).to_dict()
 		else:
 
-			results = YoutubeSearch(url, max_results=20).to_dict()
+			results = YoutubeSearch(url, max_results=10).to_dict()
 
 			# videos = URLS.objects.all()
 			# paginator = Paginator(videos, 8)
@@ -124,8 +124,13 @@ def history(request):
 		urls_to_send.append(str(url_to_be_embedded))
 
 	embedded_urls = embed_urls(urls_to_send)
+	videos = URLS.objects.all()
+	paginator = Paginator(embedded_urls, 6)
+	page_number = request.GET.get('page')
 
-	context = {"urls": embedded_urls}
+	page_obj = paginator.get_page(page_number)
+
+	context = {"page_obj": page_obj}
 
 	if request.method == "POST":
 		urls_history.delete()
