@@ -1,0 +1,183 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Akaya Telivigala', cursive;
+}
+
+header{
+  position: relative;
+  padding: 2px;
+  min-height: 75px;
+  border: 1px solid transparent;
+  border-radius: 0px;
+  background: black;
+  opacity: 0.5;
+}
+
+body{
+	background-image: url(../img/profile.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 80%;
+	min-height: 100vh;
+}
+
+.container1{
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;s
+}
+
+.left-sight{
+  width: 60%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.icon{
+  font-size: 3em;
+}
+
+.logo{
+  position: relative;
+  color: #ED1E24;
+}
+
+.menu{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu > ul{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.menu >ul >li{
+  list-style: none;
+  margin-left: 50px;
+  font-size: 20px;
+}
+
+.menu > ul > li > a{
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+
+.menu>ul>li>a:hover{
+  border-bottom: 3px solid #ED1E24;
+  color: #ED1E24;
+}
+
+.container{
+    width: 100%;
+    padding-right: 420px;
+    padding-left: 420px;
+    margin-right: auto;
+    margin-left: auto;
+    color: white;
+    font-size: 25px;
+}
+
+.update{
+    width: 100%;
+    min-height: 600px;
+    padding: 10px 20px 0px 20px;
+    margin-top: 30px;
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+}
+
+.update > form{
+    margin-top: 15px;
+}
+
+.update > a{
+    width: 90px;
+    height: 45px;
+}
+
+.update > p{
+    margin-top: 5px;
+    text-align: center;
+}
+
+.update > form > input{
+    width: 200px;
+    height: 25px;
+    font-size: 20px;
+    margin: 5px 10px;
+    outline: none;
+}
+
+.update > form > span{
+    display: none;
+}
+
+.container > .update > img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.history_btn{
+    width: 90px;
+    height: 45px;
+    margin-top: 15px;
+    background: #1A0094;
+    color: white;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.history_btn:hover{
+    background: #FCFCFD;
+    color: #1A0094;
+}
+
+.update_image{
+    margin-top: 15px;
+}
+
+.controls > a{
+    text-decoration: none;
+    color: indigo;
+}
+
+.update_btn{
+    width: 150px;
+    height: 50px;
+    margin-top: 15px;
+    background: #1A0094;
+    color: white;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.update_btn:hover{
+    background: #FCFCFD;
+    color: #1A0094;
+}
+
+.image{
+    display: flex;
+    flex-direction: column;
+}
+
+.image > label{
+    width: 80px;
+    height: 40px;
+}

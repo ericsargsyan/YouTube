@@ -1,0 +1,94 @@
+{% load static %}
+<!Doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Search Results</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/search_result.css' %}">
+</head>
+<body>
+	<header>
+		<div class="container1">
+			<div class="left-sight">
+				<a href="https://www.youtube.com/" class="icon" target="_blank">
+					<i class="fa fa-youtube-play logo" aria-hidden="true"></i>
+				</a>
+        		<div class="menu">
+					<ul>
+						<li class="active">
+							<a href="{% url 'home_page' %}">
+								<i class="fa fa-home" aria-hidden="true"></i>
+								Home
+							</a>
+						</li>
+						<li class="active">
+							<a href="{% url 'support_page' %}">
+								<i class="fa fa-life-ring" aria-hidden="true"></i>
+								Support
+							</a>
+						</li>
+					</ul>
+				</div>
+    		</div>
+			<div class="menu">
+				<ul>
+					{% if not request.user.is_authenticated %}
+					<li>
+						<a href="{% url 'register_page' %}">
+							<i class="fa fa-user-o" aria-hidden="true"></i>
+							Sign Up
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'login_page' %}">
+							<i class="fa fa-sign-in" aria-hidden="true"></i>
+							Sign In
+						</a>
+					</li>
+					{% else %}
+					<li>
+						<a href="{% url 'profile_page' %}">
+							<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+							{{ request.user.username }}
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'logout_page' %}">
+							<i class="fa fa-sign-out" aria-hidden="true"></i>
+							 Sign Out
+						</a>
+				   </li>
+					{% endif %}
+				</ul>
+			</div>
+  		</div>
+	</header>
+	<section>
+		<form action="{% url 'search_results' %}" method="POST">
+			{% csrf_token %}
+			<p>Download video from YOUTUBE</p>
+			<div class="combined">
+				<input type="text" name="url" placeholder="Type Video Name or URL"><br>
+				<button type="submit" name="search"><i class="fa fa-search" aria-hidden="true"></i></button>
+			</div>
+		</form>
+	</section>
+	<section>
+		<div class="result">
+			<form method="POST">
+			{% for video in results %}
+				{% csrf_token %}
+					<div class="video_result">
+						<a href="{% url 'download_page' video.id %}">
+							<img src="{{ video.thumbnails.0 }}" width="300" height="150">
+						</a>
+						{{ video.title }}
+					</div>
+			{% endfor %}
+			</form>
+		</div>
+	</section>
+</body>
+<script src="{% static 'js/script.js' %}"></script>
+</html>

@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+	<header>
+		<div class="container1">
+			<div class="left-sight">
+				<a href="https://www.youtube.com/" class="icon" target="_blank">
+					<i class="fa fa-youtube-play logo" aria-hidden="true"></i>
+				</a>
+        		<div class="menu">
+					<ul>
+						<li class="active">
+							<a href="{% url 'home_page' %}">
+								<i class="fa fa-home" aria-hidden="true"></i>
+								Home
+							</a>
+						</li>
+						<li class="active">
+							<a href="{% url 'support_page' %}">
+								<i class="fa fa-life-ring" aria-hidden="true"></i>
+								Support
+							</a>
+						</li>
+					</ul>
+				</div>
+    		</div>
+			<div class="menu">
+				<ul>
+					{% if not request.user.is_authenticated %}
+					<li>
+						<a href="{% url 'register_page' %}">
+							<i class="fa fa-user-o" aria-hidden="true"></i>
+							Sign Up
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'login_page' %}">
+							<i class="fa fa-sign-in" aria-hidden="true"></i>
+							Sign In
+						</a>
+					</li>
+					{% else %}
+					<li>
+						<a href="{% url 'profile_page' %}">
+							<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+							{{ request.user.username }}
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'logout_page' %}">
+							<i class="fa fa-sign-out" aria-hidden="true"></i>
+							 Sign Out
+						</a>
+				   </li>
+					{% endif %}
+				</ul>
+			</div>
+  		</div>
+	</header>
+	<div class="container">
+		<div class="update">
+			<img src="{{ user.profile.image.url }}">
+			<h2>Username: {{ user.username }}</h2>
+			<h2>Email: {{ user.email }}</h2>
+            {% block content %}
+            {% endblock content %}
+		</div>
+	</div>
+<!--	<div class="row">-->
+<!--        <div class="col-md-12">-->
+<!--          {% if messages %}-->
+<!--          {% for message in messages %}-->
+<!--          <div class="alert alert-{{ message.tags }}">-->
+<!--          {{ message }}-->
+<!--          </div>-->
+<!--          {% endfor %}-->
+<!--          {% endif %}-->
+<!--        </div>-->
+<!--      </div>-->
+</body>
+
+<!--<script type="text/javascript" src="{% static 'js/vanilla-tilt.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>-->
+</html>

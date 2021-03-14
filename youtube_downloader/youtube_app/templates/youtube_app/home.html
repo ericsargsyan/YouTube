@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,
+		400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+	<title>Home</title>
+</head>
+<body>
+	<header>
+		<div class="container1">
+			<div class="left-sight">
+				<a href="https://www.youtube.com/" class="icon" target="_blank">
+					<i class="fa fa-youtube-play logo" aria-hidden="true"></i>
+				</a>
+        		<div class="menu">
+					<ul>
+						<li class="active">
+							<a href="{% url 'home_page' %}">
+								<i class="fa fa-home" aria-hidden="true"></i>
+								Home
+							</a>
+						</li>
+						<li class="active">
+							<a href="{% url 'support_page' %}">
+								<i class="fa fa-life-ring" aria-hidden="true"></i>
+								Support
+							</a>
+						</li>
+					</ul>
+				</div>
+    		</div>
+			<div class="menu">
+				<ul>
+					{% if not request.user.is_authenticated %}
+					<li>
+						<a href="{% url 'register_page' %}">
+							<i class="fa fa-user-o" aria-hidden="true"></i>
+							Sign Up
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'login_page' %}">
+							<i class="fa fa-sign-in" aria-hidden="true"></i>
+							Sign In
+						</a>
+					</li>
+					{% else %}
+					<li>
+						<a href="{% url 'profile_page' %}">
+							<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+							{{ request.user.username }}
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'logout_page' %}">
+							<i class="fa fa-sign-out" aria-hidden="true"></i>
+							 Sign Out
+						</a>
+				   </li>
+					{% endif %}
+				</ul>
+			</div>
+  		</div>
+	</header>
+	<section>
+		<form action="{% url 'search_results' %}" method="POST">
+			{% csrf_token %}
+			<p>Download video from YOUTUBE</p>
+			<div class="combined">
+				<input type="text" name="url" placeholder="Type Video Name or URL"><br>
+				<button type="submit" name="search"><i class="fa fa-search" aria-hidden="true"></i></button>
+			</div>
+		</form>
+	</section>
+	<section>
+		<div class="container2">
+			<div class="card">
+				<div class="imgbx"></div>
+				<div class="content">
+					<div>
+						<p>
+							<ul>
+								<li>Music is the language of the spirit. It opens the secret of life bringing peace, abolishing strife.</li>
+								<li>Music is the art which is most nigh to tears and memory.</li>
+								<li>The emotions caused by music cannot be described. So don't waste your time MUSIC ius waiting for you!</li>
+							</ul>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="imgbx imgbx1"></div>
+				<div class="content">
+					<div>
+						<p>
+							<ul>
+								<li>The domain name YouTube.com was registered on Valentine’s Day in 2005</li>
+								<li>The longest Video ever on YouTube is 48 hours (2 days!)</li>
+								<li>Together, we spend 2.9 billion hours on YouTube in a month. That’s 326,294 years.</li>
+								<li>YouTube reached over 700 billion playbacks in 2010</li>
+							</ul>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

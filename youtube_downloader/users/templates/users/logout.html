@@ -1,0 +1,18 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/logout.css' %}">
+    <title>Sign Out</title>
+</head>
+<body>
+    <div class="sign_out">
+		<p>Are you sure you want to logout?</p>
+        <div class="answer">
+            <a class="btn-lg btn-nm btn-danger" href="{% url 'logout' %}">Yes</a>
+            <a class="btn-lg btn-nm btn-primary" href="{% url 'home_page' %}">Cancel</a>
+        </div>
+    </div>
+</body>
+</html>

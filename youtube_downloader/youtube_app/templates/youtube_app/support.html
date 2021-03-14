@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/support.css' %}">
+	<title>Support Page</title>
+</head>
+<body>
+<header>
+		<div class="container1">
+			<div class="left-sight">
+				<a href="https://www.youtube.com/" class="icon" target="_blank">
+					<i class="fa fa-youtube-play logo" aria-hidden="true"></i>
+				</a>
+        		<div class="menu">
+					<ul>
+						<li class="active">
+							<a href="{% url 'home_page' %}">
+								<i class="fa fa-home" aria-hidden="true"></i>
+								Home
+							</a>
+						</li>
+						<li class="active">
+							<a href="{% url 'support_page' %}">
+								<i class="fa fa-life-ring" aria-hidden="true"></i>
+								Support
+							</a>
+						</li>
+					</ul>
+				</div>
+    		</div>
+			<div class="menu">
+				<ul>
+					{% if not request.user.is_authenticated %}
+					<li>
+						<a href="{% url 'register_page' %}">
+							<i class="fa fa-user-o" aria-hidden="true"></i>
+							Sign Up
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'login_page' %}">
+							<i class="fa fa-sign-in" aria-hidden="true"></i>
+							Sign In
+						</a>
+					</li>
+					{% else %}
+					<li>
+						<a href="{% url 'profile_page' %}">
+							<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+							{{ request.user.username }}
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'logout_page' %}">
+							<i class="fa fa-sign-out" aria-hidden="true"></i>
+							 Sign Out
+						</a>
+				   </li>
+					{% endif %}
+				</ul>
+			</div>
+  		</div>
+	</header>
+	<div class="container">
+		<div class="box">
+			<span></span>
+			<div class="content">
+				<h2>Select Video</h2>
+				<p>Inside the software, type a keyword to search for a video. Alternatively, you can copy the video URL. Web-site automatically recognizes any valid URLs and will suggest initiating a download.</p>
+			</div>
+		</div>
+		<div class="box">
+			<span></span>
+			<div class="content">
+				<h2>Select Format</h2>
+				<p>You can download videos in a wide range of resolutions and formats. Would you like just the audio as a 192 Kbps MP3 file, or an Ultra High Definition 4K video as an MP4? No problem!</p>
+			</div>
+		</div>
+		<div class="box">
+			<span></span>
+			<div class="content">
+				<h2>Download</h2>
+				<p>Once you hit the download button, our web-site will make ready your selected video for download and then you can download it in your computer and see the resault in your 'Downloads' forlder!</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
