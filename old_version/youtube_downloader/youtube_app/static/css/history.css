@@ -1,0 +1,154 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-image: url(../img/history.jpg);
+  background-size: cover;
+  background-position: 50% 20%;
+  background-repeat: no-repeat;
+}
+
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+header{
+  position: relative;
+  padding:10px;
+  min-height: 75px;
+  border: 1px solid transparent;
+  border-radius: 0px;
+  background: black;
+  opacity: 0.5;
+}
+
+.container1{
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;s
+}
+
+.left-sight{
+  width: 60%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.icon{
+  font-size: 3em;
+}
+
+.logo{
+  position: relative;
+  color: #ED1E24;
+}
+
+.menu{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu > ul{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.menu >ul >li{
+  list-style: none;
+  margin-left: 30px;
+  font-size: 20px;
+}
+
+.menu > ul > li > a{
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+
+.menu>ul>li>a:hover{
+  border-bottom: 3px solid #ED1E24;
+  color: #ED1E24;
+}
+
+.container{
+    width: 100%;
+    height: 50%;
+    padding-right: 70px;
+    padding-left: 70px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container > iframe{
+    margin-top: 15px;
+    opacity: 0.5;
+}
+
+.container > iframe:hover{
+    opacity: 1;
+}
+
+form{
+    margin-top: 30px;
+}
+
+.clear_history{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clear_history > button{
+    width: 150px;
+    height: 80px;
+    font-size: 20px;
+    background: #8F3A25;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    color: white;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.clear_history > button:hover{
+    opacity: 1;
+}
+
+.pages{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.pages > p{
+    color: #E7C09A;
+    font-size: 25px;
+}
+
+.pages > a{
+    text-decoration: none;
+    color: #C8ADA6;
+    font-size: 25px;
+    margin: 0 15px 0 15px;
+}
+

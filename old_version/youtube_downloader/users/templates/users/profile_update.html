@@ -1,0 +1,13 @@
+{% extends 'youtube_app/base_profile.html' %}
+{% block content %}
+    <title>Update Profile</title>
+    <style>
+
+    </style>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{u_form}}
+        {{p_form}}
+    <center><button class="update_btn" type="submit">Update</button></center>
+    </form>
+{% endblock content %}

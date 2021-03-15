@@ -1,0 +1,199 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+  width: 100%;
+  position: absolute;
+  z-index: 9;
+  padding:10px;
+  min-height: 75px;
+  border: 1px solid transparent;
+  border-radius: 0px;
+  background: black;
+  opacity: 0.5;
+}
+
+.container1{
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;s
+}
+
+.left-sight{
+  width: 60%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.icon{
+  font-size: 3em;
+}
+
+.logo{
+  position: relative;
+  color: #ED1E24;
+}
+
+.menu{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu > ul{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.menu >ul >li{
+  list-style: none;
+  margin-left: 50px;
+  font-size: 20px;
+}
+
+.menu > ul > li > a{
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+
+.menu>ul>li>a:hover{
+  border-bottom: 3px solid #ED1E24;
+  color: #ED1E24;
+}
+
+section{
+    position: relative;
+    min-height: 100vh;
+    background: url(../img/sign_up.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container{
+    position: relative;
+    width: 450px;
+    min-height: 550px;
+    background: white;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    opacity: 0.8;
+}
+
+.user{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formbox{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #111E59;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    transition: 0.5s;
+}
+
+form p{
+    font-size: 18px;
+    font-family: 'Poppins';
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 15px;
+    color: white;
+}
+
+form input{
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    background: #f5f5f5;
+    color: #333;
+    border: 1 px solid black;
+    outline: none;
+    box-shadow: none;
+    margin: 8px 0;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+
+form > span{
+    display: none;
+}
+
+form > label{
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 100%;
+    color: white;
+}
+
+form > ul > li{
+    margin: 15px 0;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 100%;
+    color: white;
+}
+
+.reg_button{
+    width: 100px;
+    height: 40px;
+    margin: 10px 0 0 0;
+    background: #212A4A;
+    border: none;
+    color: #D5F8FF;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: 0.5s;
+    outline: none;
+}
+
+.signup{
+    position: relative;
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.signup a{
+    font-weight: 600;
+    text-decoration: none;
+    color: #677eff;
+}
