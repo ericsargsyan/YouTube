@@ -1,6 +1,6 @@
+{% extends 'youtube_app/base_navbar.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% block content %}
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,63 +11,6 @@
 		400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
 	<title>Home</title>
 </head>
-<body>
-	<header>
-		<div class="container1">
-			<div class="left-sight">
-				<a href="https://www.youtube.com/" class="icon" target="_blank">
-					<i class="fa fa-youtube-play logo" aria-hidden="true"></i>
-				</a>
-        		<div class="menu">
-					<ul>
-						<li class="active">
-							<a href="{% url 'home_page' %}">
-								<i class="fa fa-home" aria-hidden="true"></i>
-								Home
-							</a>
-						</li>
-						<li class="active">
-							<a href="{% url 'support_page' %}">
-								<i class="fa fa-life-ring" aria-hidden="true"></i>
-								Support
-							</a>
-						</li>
-					</ul>
-				</div>
-    		</div>
-			<div class="menu">
-				<ul>
-					{% if not request.user.is_authenticated %}
-					<li>
-						<a href="{% url 'register_page' %}">
-							<i class="fa fa-user-o" aria-hidden="true"></i>
-							Sign Up
-						</a>
-					</li>
-					<li>
-						<a href="{% url 'login_page' %}">
-							<i class="fa fa-sign-in" aria-hidden="true"></i>
-							Sign In
-						</a>
-					</li>
-					{% else %}
-					<li>
-						<a href="{% url 'profile_page' %}">
-							<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-							{{ request.user.username }}
-						</a>
-					</li>
-					<li>
-						<a href="{% url 'logout_page' %}">
-							<i class="fa fa-sign-out" aria-hidden="true"></i>
-							 Sign Out
-						</a>
-				   </li>
-					{% endif %}
-				</ul>
-			</div>
-  		</div>
-	</header>
 	<section>
 		<form action="{% url 'search_results' %}" method="POST">
 			{% csrf_token %}
@@ -111,5 +54,4 @@
 			</div>
 		</div>
 	</section>
-</body>
-</html>
+{% endblock content %}

@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
+from django.views.generic.edit import CreateView
 
 
 def register(request):
@@ -40,7 +41,8 @@ def profile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.add_message(request, messages.SUCCESS, "Your account has been updated!")
+            # messages.success(request, "Your account has been updated successfully!")
+            messages.add_message(request, messages.SUCCESS, "Your account has been updated successfully!")
             return redirect('profile_page')
 
     u_form = UserUpdateForm(instance=request.user)
@@ -51,17 +53,6 @@ def profile(request):
                 'p_form': p_form
     }
     return render(request, 'users/profile.html', context)
-
-
-# @login_required
-# def profile(request):
-#
-#     user_profile = get_object_or_404(Profile, user_id=request.user.id)
-#
-#     context = {
-#                 "profile": user_profile
-#     }
-#     return render(request, 'users/profile.html', context)
 
 
 @login_required
