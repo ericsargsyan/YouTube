@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Download Page</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/download.css' %}">
+</head>
+<body>
+	<header>
+		<div class="container1">
+			<div class="left-sight">
+				<a href="https://www.youtube.com/" class="icon" target="_blank">
+					<i class="fa fa-youtube-play logo3" aria-hidden="true"></i>
+				</a>
+        		<div class="menu">
+					<ul>
+						<li class="active">
+							<a href="{% url 'home_page' %}">
+								<i class="fa fa-home" aria-hidden="true"></i>
+								Home
+							</a>
+						</li>
+						<li class="active">
+							<a href="{% url 'support_page' %}">
+								<i class="fa fa-life-ring" aria-hidden="true"></i>
+								Support
+							</a>
+						</li>
+					</ul>
+				</div>
+    		</div>
+			<div class="menu">
+				<ul>
+					{% if not request.user.is_authenticated %}
+					<li>
+						<a href="{% url 'register_page' %}">
+							<i class="fa fa-user-o" aria-hidden="true"></i>
+							Sign Up
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'login_page' %}">
+							<i class="fa fa-sign-in" aria-hidden="true"></i>
+							Sign In
+						</a>
+					</li>
+					{% else %}
+					<li>
+						<a href="{% url 'profile_page' %}">
+							<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+							{{ request.user.username }}
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'logout_page' %}">
+							<i class="fa fa-sign-out" aria-hidden="true"></i>
+							 Sign Out
+						</a>
+				   </li>
+					{% endif %}
+				</ul>
+			</div>
+  		</div>
+	</header>
+	<div class="text">
+		<p>{{ title }}</p>
+	</div>
+	<div class="container">
+		<div class="video_back">
+			<div class="video">
+				<iframe src="https://www.youtube.com/embed/{{ id }}" height="250" width="350" title="Iframe Example"></iframe>
+			</div>
+		</div>
+		<div class="box">
+			<i class="fa fa-youtube-play logo" aria-hidden="true"></i>
+		</div>
+		<div class="about_video_back">
+			<div class="about_video">
+				<div class="case">
+					<p>Duration</p>
+					<div class="log">
+						<i class="logo2 fa fa-clock-o" aria-hidden="true"></i>
+					</div>
+				</div>
+				<div class="case">
+					<p>Views</p>
+					<div class="log1">
+						<i class="logo2 fa fa-eye" aria-hidden="true"></i>
+					</div>
+				</div>
+				<div class="case">
+					<p>Likes</p>
+					<div class="log1">
+						<i class="logo2 fa fa-thumbs-up" aria-hidden="true"></i>
+					</div>
+				</div>
+				<div class="case">
+					<p>Dislikes</p>
+					<div class="log1">
+						<i class="logo2 fa fa-thumbs-down" aria-hidden="true"></i>
+					</div>
+				</div>
+			</div>
+			<div class="addition">
+				<p>{{ duration }}</p>
+				<p>{{ views }}</p>
+				<p>{{ likes }}</p>
+				<p>{{ dislikes }}</p>
+			</div>
+		</div>
+	</div>
+	<div class="download">
+		<form method="POST" action="{% url 'download_page' id %}">
+			{% csrf_token %}
+			<button onclick="myFunction(); setTimeout(fn, 100);" class="btn btn-primary btn-lg btn-block" type="submit">
+				Download Video
+			</button>
+		</form>
+		<form action="{% url 'download_mp3' id %}" method="POST">
+			{% csrf_token %}
+			<button>Download Audio</button>
+		</form>
+	</div>
+</body>
+</html>
