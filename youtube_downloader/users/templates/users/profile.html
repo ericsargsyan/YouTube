@@ -70,7 +70,7 @@
         <div class="col-md-12">
           {% if messages %}
           {% for message in messages %}
-          <div class="alert alert-{{ message.tags }}">
+          <div id="alert" class="alert alert-{{ message.tags }}" style="visibility: hidden">
           {{ message }}
           </div>
           {% endfor %}
@@ -83,6 +83,7 @@
 			<h2>Username: {{ user.username }}</h2>
 			<h2>Email: {{ user.email }}</h2>
 			<a href="{% url 'history_page' %}"><button class="history_btn" type="submit">History</button></a>
+			<a href="{% url 'playlist_history' %}"><button class="history_btn" type="submit">Playlists</button></a>
 			<p>Update Profile Info</p>
 			<form method="POST" enctype="multipart/form-data">
         		{% csrf_token %}
@@ -95,6 +96,6 @@
 		</div>
 	</div>
 </body>
-<!--<script type="text/javascript" src="{% static 'js/vanilla-tilt.js' %}"></script>
-<script src="{% static 'js/script.js' %}"></script>-->
+<!--<script type="text/javascript" src="{% static 'js/vanilla-tilt.js' %}"></script>-->
+<script src="{% static 'js/profile.js' %}"></script>
 </html>

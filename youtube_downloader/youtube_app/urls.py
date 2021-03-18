@@ -9,6 +9,8 @@ urlpatterns = [
     path('download_audio/<str:pk>/', views.download_audio, name='download_mp3'),
     # path('history/', views.history, name="history_page"),
     path('history/', views.HistoryView.as_view(), name="history_page"),
+    # path('history/', views.history, name="history_page"),
     path('success_massage/', views.MassageView.as_view(), name="success_massage"),
     path('playlist_download/', views.playlist_download, name="playlist_download"),
+    path('playlist_history/', views.playlist_history, name="playlist_history"),
 ]

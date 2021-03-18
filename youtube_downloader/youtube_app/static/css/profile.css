@@ -181,3 +181,11 @@ body{
     width: 80px;
     height: 40px;
 }
+
+.alert{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}

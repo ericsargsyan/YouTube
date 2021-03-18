@@ -33,7 +33,7 @@ header{
   margin-left: auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;s
+  align-items: center;
 }
 
 .left-sight{
@@ -115,7 +115,7 @@ form > p{
     width: 500px;
     height: 80px;
     border-radius: 50px;
-    padding: 10px;
+    padding: 0 75px 0 10px;
     outline: none;
 }
 
@@ -181,7 +181,7 @@ form > p{
     left: -75px;
     top: calc(50% - 75px);
     transition: 0.5s ease-in-out;
-    background: black:
+    background: black;
 }
 
 .container2 .card .imgbx img{

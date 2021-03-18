@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="{% static 'css/history.css' %}">
     <title>History</title>
 </head>
-	<div class="container">-->
-      	{% for url in object_list %}
+	<div class="container">
+      	{% for url in page_obj %}
         <iframe class="iframe-class" src="{{ url }}"></iframe>
         {% endfor %}
     </div>
-	<form method="POST">-->
+	<form method="POST">
 		{% csrf_token %}
 		<div class="clear_history">
 			<button type="submit">Clear History</button>
