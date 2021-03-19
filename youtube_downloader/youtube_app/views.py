@@ -55,7 +55,7 @@ def embed_urls(urls):
 	return embedded_urls
 
 
-def extract_from_playlist(results, item):
+def extract_from_playlist(results, item="playlist"):
 	result = []
 	for dict_ in results["entries"]:
 		for key, value in dict_.items():
@@ -73,9 +73,17 @@ def search_results(request):
 			if is_playlist(url):
 				Playlists.objects.create(user=request.user, playlist_url=url)
 				PlaylistURLS.objects.create(user=request.user, urls=url)
-				return playlist_download(request, url)
-			# else:
-				# URLS.objects.create(user=request.user, url=url)
+
+				playlist = Playlist(url)
+				embedded_urls = embed_urls(playlist)
+
+				context = {
+					"playlist": url,
+					"embedded_urls": embedded_urls
+				}
+
+				return render(request, "youtube_app/playlist_download.html", context)
+
 			results = YoutubeSearch(url, max_results=1).to_dict()
 
 		else:
@@ -106,21 +114,51 @@ def search_results(request):
 
 @login_required
 def playlist_download(request, url):
-	playlist = Playlist(url)
+	print("In playlist")
+	ydl_opts = {'ignoreerrors': True}
+	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+		results = ydl.extract_info([url], download=False)
+		playlist = extract_from_playlist(results, "webpage_url")
+
+	print(playlist)
 	embedded_urls = embed_urls(playlist)
-	# database = embedded_urls[0]
-	# Playlists.objects.create(playlist_url=database)
-	# PlaylistURLS.objects.create(urls=url)
-	# titles = []
-	# for video in playlist.videos:
-	# 	titles.append(video.title)
-	# Playlists.objects.create(user=request.user, playlist_url=url)
+
 	context = {
+		"playlist": url,
 		"embedded_urls": embedded_urls
-		# "titles": titles
 	}
 
 	return render(request, "youtube_app/playlist_download.html", context)
+
+
+def playlist_mp4(request):
+	url = str(Playlists.objects.all().filter(user=request.user).last())
+	print(type(url))
+	ydl_opts = {'ignoreerrors': True}
+	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+		results = ydl.extract_info(url, download=False)
+
+	# playlist = extract_from_playlist(results, "webpage_url")
+
+	playlist_folder = "Playlists"
+	main_playlist = results["entries"][0]["playlist"]
+
+	if request.method == "POST":
+		if not os.path.exists(playlist_folder):
+			os.mkdir(playlist_folder)
+		os.chdir(playlist_folder)
+		if not os.path.exists(main_playlist):
+				os.mkdir(main_playlist)
+		os.chdir(main_playlist)
+
+		ydl_opts = {'ignoreerrors': True}
+		with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+			ydl.download([url])
+
+		os.chdir(os.path.join('..', '..'))
+	print(os.getcwd())
+	# print(url)
+	return HttpResponse("It Works!!!!")
 
 
 @login_required
@@ -151,10 +189,10 @@ def download(request, id):
 		'outtmpl': filename,
 	}
 
-	URLS.objects.create(user=request.user, url=video_url)
+	if not URLS.objects.filter(user=request.user, url=video_url).exists():
+		URLS.objects.create(user=request.user, url=video_url)
 
 	if request.method == "POST":
-
 		URLS.objects.create(user=request.user, url=video_url)
 		if not os.path.exists(video_folder):
 			os.mkdir(video_folder)
@@ -164,7 +202,6 @@ def download(request, id):
 			ydl.download([video_url])
 		os.chdir("..")
 
-		# return redirect("search_results")
 		return redirect('success_massage')
 	return render(request, "youtube_app/download.html", info)
 
@@ -193,31 +230,6 @@ class HistoryView(LoginRequiredMixin, ListView):
 		urls_history.delete()
 		return redirect('profile_page')
 
-# @login_required
-# def history(request):
-#
-# 	urls_history = URLS.objects.all().filter(user=request.user.id)
-# 	urls_to_send = []
-#
-# 	for url_to_be_embedded in urls_history:
-# 		urls_to_send.append(str(url_to_be_embedded))
-#
-# 	embedded_urls = embed_urls(urls_to_send)
-#
-# 	paginator = Paginator(embedded_urls, 8)
-# 	page_number = request.GET.get('page')
-#
-# 	page_obj = paginator.get_page(page_number)
-#
-# 	context = {"page_obj": page_obj}
-# 	print(context)
-# 	print(page_obj)
-#
-# 	if request.method == "POST":
-# 		urls_history.delete()
-# 		return redirect("profile_page")
-# 	return render(request, "youtube_app/history.html", context)
-
 
 @login_required
 def download_audio(request, pk):
@@ -242,7 +254,7 @@ def download_audio(request, pk):
 		os.chdir("..")
 
 		# messages.success(request, "The video have been successfully downloaded!")
-		# return redirect("search_results")
+
 		return redirect('success_massage')
 	return render(request, "youtube_app/download.html")
 
@@ -258,65 +270,15 @@ def playlist_history(request):
 
 	for get_url in url:
 		playlist_url = get_url
-	# print(type(playlist_url))
-	# print(playlist_url)
+
 	playlist = Playlist(str(playlist_url))
 
 	urls_to_embed = [video for video in playlist]
 	embedded_urls = embed_urls(urls_to_embed)
 
-	# print(urls_to_embed)
-	# print(type(urls_to_embed))
 	print(embedded_urls)
-	# playlist.strip("\'")
-	# print(playlist)
 
 	return render(request, "youtube_app/playlist_history.html", {"videos": embedded_urls})
-	# print(playlist)
-	# #
-	# urls_to_embed = []
-	#
-	# for video in url:
-	# 	urls_to_embed.append(str(video))
-	#
-	# embedded_urls = embed_urls(urls_to_embed)
-	# print(embedded_urls)
-
-	# playlist = Playlist(url)
-	# embedded_urls = embed_urls(playlist)
-	# database = embedded_urls[0]
-	# titles = []
-	# for video in playlist.videos:
-	# 	titles.append(video.title)
-	# Playlists.objects.create(user=request.user, playlist_url=url)
-	# context = {
-	# 	"embedded_urls": embedded_urls
-	# 	# "titles": titles
-	# }
-	#
-	# print(context)
-	# return HttpResponse("Works good!")
-# main_playlist = Playlists.objects.all().filter(user=request.user.id)
-	# return render(request, "youtube_app/playlist_history.html")
-# 	urls_history = URLS.objects.all().filter(user=request.user.id)
-# 	urls_to_send = []
-#
-# 	for url_to_be_embedded in urls_history:
-# 		urls_to_send.append(str(url_to_be_embedded))
-#
-# 	embedded_urls = embed_urls(urls_to_send)
-# 	videos = URLS.objects.all()
-# 	paginator = Paginator(embedded_urls, 8)
-# 	page_number = request.GET.get('page')
-#
-# 	page_obj = paginator.get_page(page_number)
-#
-# 	context = {"page_obj": page_obj}
-#
-# 	if request.method == "POST":
-# 		urls_history.delete()
-# 		return redirect("profile_page")
-# 	return render(request, "youtube_app/history.html", context)
 
 
 # class PlaylistHistory(LoginRequiredMixin, View):
@@ -337,4 +299,3 @@ def playlist_history(request):
 # 		urls_history = URLS.objects.all().filter(user=self.request.user.id)
 # 		urls_history.delete()
 # 		return redirect('profile_page')
-

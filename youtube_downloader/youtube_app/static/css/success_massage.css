@@ -12,72 +12,70 @@ body{
 }
 
 header{
-  position: relative;
-  padding:10px;
-  min-height: 75px;
-  border: 1px solid transparent;
-  border-radius: 0px;
-  border: none;
-  background: black;
-  box-shadow: 0 0 50px #0079AE,
+    position: relative;
+    padding:10px;
+    min-height: 75px;
+    border: 1px solid transparent;
+    background: black;
+    box-shadow: 0 0 50px #0079AE,
                 inset 0 0 50px #0079AE;
-  opacity: 0.5;
+    opacity: 0.5;
 }
 
 .container1{
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .left-sight{
-  width: 60%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+    width: 60%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .icon{
-  font-size: 3em;
+    font-size: 3em;
 }
 
 .logo{
-  position: relative;
-  color: #ED1E24;
+    position: relative;
+    color: #ED1E24;
 }
 
 .menu{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .menu > ul{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .menu >ul >li{
-  list-style: none;
-  margin-left: 30px;
-  font-size: 20px;
+    list-style: none;
+    margin-left: 30px;
+    font-size: 20px;
 }
 
 .menu > ul > li > a{
-  text-decoration: none;
-  cursor: pointer;
-  color: white;
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
 }
 
 .menu>ul>li>a:hover{
-  border-bottom: 3px solid #ED1E24;
-  color: #ED1E24;
+    border-bottom: 3px solid #ED1E24;
+    color: #ED1E24;
 }
 
 section{

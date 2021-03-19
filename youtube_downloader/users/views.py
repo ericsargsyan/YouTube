@@ -1,7 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-# from .forms import RegisterForm, ProfileForm, UserUpdateForm, ProfileUpdateForm
 from .forms import ProfileUpdateForm, UserUpdateForm, UserRegisterForm
 from .models import Profile
 from django.contrib import messages
@@ -9,6 +8,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, V
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView
+
 
 def register(request):
     form = UserRegisterForm()

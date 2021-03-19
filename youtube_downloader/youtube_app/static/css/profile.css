@@ -10,7 +10,6 @@ header{
   padding: 2px;
   min-height: 75px;
   border: 1px solid transparent;
-  border-radius: 0px;
   background: black;
   opacity: 0.5;
 }
@@ -24,59 +23,59 @@ body{
 }
 
 .container1{
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;s
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .left-sight{
-  width: 60%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+    width: 60%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .icon{
-  font-size: 3em;
+    font-size: 3em;
 }
 
 .logo{
-  position: relative;
-  color: #ED1E24;
+    position: relative;
+    color: #ED1E24;
 }
 
 .menu{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .menu > ul{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .menu >ul >li{
-  list-style: none;
-  margin-left: 50px;
-  font-size: 20px;
+    list-style: none;
+    margin-left: 50px;
+    font-size: 20px;
 }
 
 .menu > ul > li > a{
-  text-decoration: none;
-  cursor: pointer;
-  color: white;
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
 }
 
 .menu>ul>li>a:hover{
-  border-bottom: 3px solid #ED1E24;
-  color: #ED1E24;
+    border-bottom: 3px solid #ED1E24;
+    color: #ED1E24;
 }
 
 .container{
@@ -92,7 +91,7 @@ body{
 .update{
     width: 100%;
     min-height: 600px;
-    padding: 10px 20px 0px 20px;
+    padding: 10px 20px 0 20px;
     margin-top: 30px;
     backdrop-filter: blur(15px);
     display: flex;
@@ -131,10 +130,14 @@ body{
     border-radius: 50%;
 }
 
+.history_playlsit{
+    display: flex;
+}
+
 .history_btn{
     width: 90px;
     height: 45px;
-    margin-top: 15px;
+    margin: 15px 0 0 15px;
     background: #1A0094;
     color: white;
     cursor: pointer;

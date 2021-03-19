@@ -1,17 +1,29 @@
+{% extends 'youtube_app/base_navbar.html' %}
+{% block content %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Playlists</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'css/playlist_history.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
+	<title>Playlist</title>
 </head>
 <body>
-{% for video in videos %}
-{% csrf_token %}
-{{ video }}
-<!--    <div class="video_result">-->
-<!--        <iframe class="iframe-class" src="{{ video }}"></iframe>-->
-<!--    </div>-->
-        {% endfor %}
+   <!-- <section>
+        <div class="content">
+            {% for video in videos %}
+            <ul>
+                <li>
+                    {% csrf_token %}
+                    {{ video }}
+                </li>
+            </ul>
+            {% endfor %}
+        </div>
+    </section>-->
 </body>
 </html>
+{% endblock %}

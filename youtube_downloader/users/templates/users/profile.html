@@ -82,8 +82,10 @@
 			<img src="{{ user.profile.image.url }}">
 			<h2>Username: {{ user.username }}</h2>
 			<h2>Email: {{ user.email }}</h2>
-			<a href="{% url 'history_page' %}"><button class="history_btn" type="submit">History</button></a>
-			<a href="{% url 'playlist_history' %}"><button class="history_btn" type="submit">Playlists</button></a>
+			<div class="history_playlist">
+				<a href="{% url 'history_page' %}"><button class="history_btn" type="submit">History</button></a>
+				<a href="{% url 'playlist_history' %}"><button class="history_btn" type="submit">Playlists</button></a>
+			</div>
 			<p>Update Profile Info</p>
 			<form method="POST" enctype="multipart/form-data">
         		{% csrf_token %}

@@ -4,13 +4,19 @@
     box-sizing: border-box;
 }
 
+body{
+    background: lightgrey;
+}
+
 header{
-    position: relative;
+    position: fixed;
+    width: 100%;
     padding:10px;
     min-height: 75px;
     border: 1px solid transparent;
     background: black;
-    opacity: 0.5;
+    z-index: 9;
+    opacity: 0.8;
 }
 
 .container1{
@@ -70,36 +76,109 @@ header{
 }
 
 section{
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.combined{
+    margin-top: 30px;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
 
+.combined > input{
+    position: relative;
+    border: 3px solid grey;
+    font-size: 20px;
+    width: 500px;
+    height: 80px;
+    border-radius: 50px;
+    padding: 0 75px 0 10px;
+    outline: none;
+}
+
+.combined > button{
+    position: absolute;
+    margin-left: 410px;
+    font-size: 40px;
+    color: grey;
+    background: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.plst_download{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.plst_download > form > button{
+    margin-top: 90px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: inherit;
+    border: none;
+    font-family: 'Syne Mono', monospace;
+    font-size: 40px;
+    cursor: pointer;
+    outline: none;
+}
+
+.plist{
+    margin-top: 85px;
+    font-size: 50px;
+    color: white;
+    font-family: 'Syne Mono', monospace;
+}
+
+.plist:before{
+    content: '-';
+    color: white;
+}
+
+.plist:after{
+    content: '-';
+    color: white;
 }
 
 .contain{
-    width: 83%;
-    height: 500px;
-    padding: 10px 20px 0 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 40px 20px 0 20px;
     overflow: scroll;
 }
 
-.contain::-webkit-scrollbar{
+.contain > iframe{
+    margin-top: 10px;
+}
+
+::-webkit-scrollbar{
     width: 0;
 }
 
 #scrollPath{
-    top: 0;
-    right: 0;
-    width: 10px;
-    min-height: 100%;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-#progressbar{
+    position: fixed;
     top: 0;
     right: 0;
     width: 10px;
     height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#progressbar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 10px;
     background: linear-gradient(to top, #008aff, #00ffe7);
     animation: animate 5s linear infinite;
 }
@@ -113,7 +192,7 @@ section{
     }
 }
 
-/*#progressbar:before{
+#progressbar:before{
     content: '';
     position: absolute;
     top: 0;
@@ -124,7 +203,7 @@ section{
     filter: blur(10px);
 }
 
-#progressbar:after{
+#progressbar:after {
     content: '';
     position: absolute;
     top: 0;
@@ -133,5 +212,5 @@ section{
     height: 100%;
     background: linear-gradient(to top, #008aff, #00ffe7);
     filter: blur(30px);
-}*/
+}
 

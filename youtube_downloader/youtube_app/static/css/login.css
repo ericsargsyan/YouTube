@@ -5,71 +5,70 @@
 }
 
 header{
-  width: 100%;
-  position: absolute;
-  z-index: 9;
-  padding:10px;
-  min-height: 75px;
-  border: 1px solid transparent;
-  border-radius: 0px;
-  background: black;
-  opacity: 0.5;
+    width: 100%;
+    position: absolute;
+    z-index: 9;
+    padding:10px;
+    min-height: 75px;
+    border: 1px solid transparent;
+    background: black;
+    opacity: 0.5;
 }
 
 .container1{
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .left-sight{
-  width: 60%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+    width: 60%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .icon{
-  font-size: 3em;
+    font-size: 3em;
 }
 
 .logo{
-  position: relative;
-  color: #ED1E24;
+    position: relative;
+    color: #ED1E24;
 }
 
 .menu{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .menu > ul{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .menu >ul >li{
-  list-style: none;
-  margin-left: 50px;
-  font-size: 20px;
+    list-style: none;
+    margin-left: 50px;
+    font-size: 20px;
 }
 
 .menu > ul > li > a{
-  text-decoration: none;
-  cursor: pointer;
-  color: white;
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
 }
 
 .menu>ul>li>a:hover{
-  border-bottom: 3px solid #ED1E24;
-  color: #ED1E24;
+    border-bottom: 3px solid #ED1E24;
+    color: #ED1E24;
 }
 
 section{
@@ -147,7 +146,7 @@ form input{
     padding: 10px;
     background: #f5f5f5;
     color: #333;
-    border: 1 px solid black;
+    border: 1px solid black;
     outline: none;
     box-shadow: none;
     margin: 8px 0;
