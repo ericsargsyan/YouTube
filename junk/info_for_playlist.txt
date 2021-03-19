@@ -1,7 +1,9 @@
 id
-title
+
+[+] title
+
 formats
-thumbnails
+[+] thumbnails
 description
 upload_date
 uploader
@@ -9,16 +11,20 @@ uploader_id
 uploader_url
 channel_id
 channel_url
-duration
-view_count
+
+[+] duration
+[+] view_count
+
 average_rating
 age_limit
 webpage_url
 categories
 tags
 is_live
-like_count
-dislike_count
+
+[+] like_count
+[+] dislike_count
+
 channel
 extractor
 webpage_url_basename
