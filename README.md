@@ -1,4 +1,7 @@
-# YouTube Project
+# YouTube Project 
+<div class="box">
+		<i class="fa fa-youtube-play logo" aria-hidden="true"></i>
+</div>
 In Development․․․<br>
 Downlaod any video from Youtube<br>
 <h2>Features</h2>
@@ -7,6 +10,7 @@ Downlaod any video from Youtube<br>
   <li>Easy coordiantion</li>
   <li>Downlaod in both MP3 and MP4 formats</li>
   <li>Special design for all pages</li>
+  <li>YouTube playlists can be downloaded in both MP3/MP4 formats</li>
 </ul>
 
 Don't forget to activate your enviroment via scripts\activate.bat
