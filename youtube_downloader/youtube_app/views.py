@@ -1,18 +1,17 @@
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect, get_object_or_404, reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import youtube_dl
 import os
 import datetime
 from youtube_search import YoutubeSearch
 from django.core.paginator import Paginator
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, View
+from django.views.generic import ListView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .models import URLS, Playlists, PlaylistURLS
 from pytube import Playlist
 from django.contrib import messages
-from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -33,7 +32,7 @@ def _valid(url: str) -> bool:
 	return False
 
 
-def is_playlist(url):
+def is_playlist(url) -> bool:
 	split_url = url.split("&")
 	for i in split_url:
 		if i.startswith("list="):
@@ -71,6 +70,7 @@ def search_results(request):
 		url = request.POST.get('url')
 		if _valid(url):
 			if is_playlist(url):
+
 				Playlists.objects.create(user=request.user, playlist_url=url)
 				PlaylistURLS.objects.create(user=request.user, urls=url)
 
@@ -79,7 +79,8 @@ def search_results(request):
 
 				context = {
 					"playlist": url,
-					"embedded_urls": embedded_urls
+					"embedded_urls": embedded_urls,
+					"title": playlist.title
 				}
 
 				return render(request, "youtube_app/playlist_download.html", context)
@@ -112,59 +113,99 @@ def search_results(request):
 	return render(request, "youtube_app/search_result.html")
 
 
+# should be removed
+# @login_required
+# def playlist_download(request, url):
+#
+# 	ydl_opts = {'ignoreerrors': True}
+# 	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+# 		results = ydl.extract_info([url], download=False)
+# 	playlist = extract_from_playlist(results, "webpage_url")
+#
+# 	embedded_urls = embed_urls(playlist)
+#
+# 	# title = results["entries"][0]["playlist"]
+#
+# 	context = {
+# 		"playlist": url,
+# 		"embedded_urls": embedded_urls,
+# 		# "title": title
+# 	}
+#
+# 	return render(request, "youtube_app/playlist_download.html", context)
+
+
 @login_required
-def playlist_download(request, url):
-	print("In playlist")
-	ydl_opts = {'ignoreerrors': True}
-	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-		results = ydl.extract_info([url], download=False)
-		playlist = extract_from_playlist(results, "webpage_url")
-
-	print(playlist)
-	embedded_urls = embed_urls(playlist)
-
-	context = {
-		"playlist": url,
-		"embedded_urls": embedded_urls
-	}
-
-	return render(request, "youtube_app/playlist_download.html", context)
-
-
 def playlist_mp4(request):
-	url = str(Playlists.objects.all().filter(user=request.user).last())
-	print(type(url))
-	ydl_opts = {'ignoreerrors': True}
-	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-		results = ydl.extract_info(url, download=False)
-
-	# playlist = extract_from_playlist(results, "webpage_url")
-
-	playlist_folder = "Playlists"
-	main_playlist = results["entries"][0]["playlist"]
-
 	if request.method == "POST":
+		url = str(Playlists.objects.all().filter(user=request.user).last())
+		# print(type(url))
+		playlist = Playlist(url)
+
+		# playlist = extract_from_playlist(results, "webpage_url")
+
+		playlist_folder = "Playlists"
+		main_playlist = playlist.title
+
 		if not os.path.exists(playlist_folder):
 			os.mkdir(playlist_folder)
 		os.chdir(playlist_folder)
 		if not os.path.exists(main_playlist):
-				os.mkdir(main_playlist)
+			os.mkdir(main_playlist)
 		os.chdir(main_playlist)
 
 		ydl_opts = {'ignoreerrors': True}
 		with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-			ydl.download([url])
+			results = ydl.extract_info(url, download=True)
 
 		os.chdir(os.path.join('..', '..'))
-	print(os.getcwd())
+	# print(os.getcwd())
 	# print(url)
-	return HttpResponse("It Works!!!!")
+		return redirect('success_massage')
+	return render(request, 'youtube_app/page_not_found.html')
+
+
+@login_required
+def playlist_mp3(request):
+
+	if request.method == "POST":
+
+		url = str(Playlists.objects.all().filter(user=request.user).last())
+		playlist = Playlist(url)
+
+		playlist_folder = "Playlists"
+		main_playlist = playlist.title
+
+		if not os.path.exists(playlist_folder):
+			os.mkdir(playlist_folder)
+		os.chdir(playlist_folder)
+		if not os.path.exists(main_playlist):
+			os.mkdir(main_playlist)
+		os.chdir(main_playlist)
+
+		ydl_opts = {
+			'ignoreerrors': True,
+			'format': 'bestaudio/best',
+			'postprocessors': [{
+				'key': 'FFmpegExtractAudio',
+				'preferredcodec': 'mp3',
+				'preferredquality': '192',
+			}],
+		}
+		with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+			results = ydl.extract_info(url, download=True)
+		os.chdir(os.path.join('..', '..'))
+
+		return redirect('success_massage')
+	return render(request, 'youtube_app/page_not_found.html')
 
 
 @login_required
 def download(request, id):
+
 	video_url = f"https://www.youtube.com/watch?v={id}"
 	commafy = lambda num: f"{num:,}"
+
 	ydl_opts = {}
 
 	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
@@ -185,25 +226,53 @@ def download(request, id):
 
 	filename = f"{info['title']}"
 	video_folder = "videos"
+
 	options = {
 		'outtmpl': filename,
 	}
 
-	if not URLS.objects.filter(user=request.user, url=video_url).exists():
-		URLS.objects.create(user=request.user, url=video_url)
-
 	if request.method == "POST":
-		URLS.objects.create(user=request.user, url=video_url)
+		# URLS.objects.create(user=request.user, url=video_url)
 		if not os.path.exists(video_folder):
 			os.mkdir(video_folder)
 		os.chdir(video_folder)
+
 		with youtube_dl.YoutubeDL(options) as ydl:
-			# messages.success(request, "The video have been successfully downloaded!")
 			ydl.download([video_url])
+
 		os.chdir("..")
 
 		return redirect('success_massage')
 	return render(request, "youtube_app/download.html", info)
+
+
+@login_required
+def download_audio(request, pk):
+	audio_folder = "songs"
+
+	if request.method == "POST":
+		ydl_opts = {
+			'format': 'bestaudio/best',
+			'postprocessors': [{
+				'key': 'FFmpegExtractAudio',
+				'preferredcodec': 'mp3',
+				'preferredquality': '192',
+			}],
+		}
+
+		if not os.path.exists(audio_folder):
+			os.mkdir(audio_folder)
+		os.chdir(audio_folder)
+
+		with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+
+			ydl.download([f'http://www.youtube.com/watch?v={pk}'])
+		os.chdir("..")
+
+		# messages.success(request, "The video have been successfully downloaded!")
+
+		return redirect('success_massage')
+	return render(request, "youtube_app/download.html")
 
 
 class HistoryView(LoginRequiredMixin, ListView):
@@ -232,39 +301,6 @@ class HistoryView(LoginRequiredMixin, ListView):
 
 
 @login_required
-def download_audio(request, pk):
-	audio_folder = "songs"
-	if request.method == "POST":
-		ydl_opts = {
-			'format': 'bestaudio/best',
-			'postprocessors': [{
-				'key': 'FFmpegExtractAudio',
-				'preferredcodec': 'mp3',
-				'preferredquality': '192',
-			}],
-		}
-		URLS.objects.create(user=request.user, url=f'http://www.youtube.com/watch?v={pk}')
-
-		if not os.path.exists(audio_folder):
-			os.mkdir(audio_folder)
-		os.chdir(audio_folder)
-		with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-
-			ydl.download([f'http://www.youtube.com/watch?v={pk}'])
-		os.chdir("..")
-
-		# messages.success(request, "The video have been successfully downloaded!")
-
-		return redirect('success_massage')
-	return render(request, "youtube_app/download.html")
-
-
-class MassageView(LoginRequiredMixin, View):
-
-	def get(self, request):
-		return render(request, "youtube_app/success_message.html")
-
-
 def playlist_history(request):
 	url = PlaylistURLS.objects.all().filter(user=request.user.id)
 
@@ -276,12 +312,10 @@ def playlist_history(request):
 	urls_to_embed = [video for video in playlist]
 	embedded_urls = embed_urls(urls_to_embed)
 
-	print(embedded_urls)
-
 	return render(request, "youtube_app/playlist_history.html", {"videos": embedded_urls})
 
 
-# class PlaylistHistory(LoginRequiredMixin, View):
+# class PlaylistHistory(LoginRequiredMixin, ListView):
 # 	template_name = "youtube_app/playlist_history.html"
 # 	model = Playlists
 # 	paginate_by = 8
@@ -299,3 +333,9 @@ def playlist_history(request):
 # 		urls_history = URLS.objects.all().filter(user=self.request.user.id)
 # 		urls_history.delete()
 # 		return redirect('profile_page')
+
+
+class MassageView(LoginRequiredMixin, View):
+
+	def get(self, request):
+		return render(request, "youtube_app/success_message.html")

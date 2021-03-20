@@ -19,8 +19,8 @@
 					Download Video
 				</button>
 			</form>
-			<center><p class="plist">Playlist</p></center>
-			<form action="#" method="GET">
+			<center><p class="plist">{{ title }}</p></center>
+			<form method="POST" action="{% url 'playlist_mp3' %}">
 				{% csrf_token %}
 				<button>Download Audio</button>
 			</form>
@@ -28,7 +28,7 @@
 		<form action="{% url 'search_results' %}" method="POST">
 		<div class="combined">
 				{% csrf_token %}
-				<input type="text" name="url" placeholder="Type Video Name or URL"><br>
+				<input type="text" name="url" placeholder="Type Video Name, URL or Playlist URL"><br>
 				<button type="submit" name="search"><i class="fa fa-search" aria-hidden="true"></i></button>
 			</div>
 		</form>
