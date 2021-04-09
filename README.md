@@ -8,11 +8,9 @@ Downlaod any video from Youtube<br>
   <li>Downlaod in both MP3 and MP4 formats</li>
   <li>Special design for all pages</li>
   <li>YouTube playlists can be downloaded in both MP3/MP4 formats</li>
-  <li>History page</li>
+  <li>History page for videos and playlists</li>
+  <li>Support page for easy coordination</li>
 </ul>
-
-Don't forget to activate your enviroment via scripts\activate.bat
-
 
 <h3>Enjoy!</h3>
 
