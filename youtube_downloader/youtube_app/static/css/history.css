@@ -151,3 +151,12 @@ form{
     margin: 0 15px 0 15px;
 }
 
+.about_{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #C8ADA6;
+    font-size: 25px;
+    margin: 30px auto;
+}
+

@@ -3,7 +3,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Page Not Found</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/error.css' %}">
+    <title>Page Not Found</title>
 </head>
+<body>
+    <header>
+        <a href="{% url 'home_page'%}"><i class="fa fa-home" aria-hidden="true"> Home</i></a>
+    </header>
+</body>
 </html>

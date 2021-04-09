@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body{
+    background-image: url(../img/playlist_hisotry.jpg);
+}
+
 a{
     text-decoration: none;
     cursor: pointer;
@@ -104,10 +108,11 @@ section{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: baseline;
     overflow: scroll;
 }
 
-ul{
-    margin-top: 20px;
+.content::-webkit-scrollbar{
+    display: none;
 }
+

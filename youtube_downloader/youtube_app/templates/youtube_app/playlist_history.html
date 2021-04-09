@@ -12,18 +12,38 @@
 	<title>Playlist</title>
 </head>
 <body>
-   <!-- <section>
-        <div class="content">
-            {% for video in videos %}
-            <ul>
-                <li>
-                    {% csrf_token %}
-                    {{ video }}
-                </li>
-            </ul>
-            {% endfor %}
-        </div>
-    </section>-->
+<!--   <section>-->
+<!--        <div class="content">-->
+<!--            {% for video in videos %}-->
+<!--            <ul>-->
+<!--                <li>-->
+<!--                    {% csrf_token %}-->
+<!--                    {{ video }}-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--    </section>-->
+
+<!--   {% for i in titles %}-->
+
+<!--        {{ title }}-->
+<!--    {% endfor %}-->
+<!--<div class="pages">-->
+<!--			{% if page_obj.has_previous %}-->
+<!--				<a href="?page={{ page_obj.previous_page_number }}">-->
+<!--					<i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>-->
+<!--				</a>-->
+<!--			{% endif %}-->
+<!--			<p>-->
+<!--			Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}-->
+<!--			</p>-->
+<!--			{% if page_obj.has_next %}-->
+<!--				<a href="?page={{ page_obj.next_page_number }}">-->
+<!--					<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>-->
+<!--				</a>-->
+<!--			{% endif %}-->
+<!--</div>-->
 </body>
 </html>
 {% endblock %}
